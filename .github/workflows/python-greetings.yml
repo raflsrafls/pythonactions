@@ -22,7 +22,10 @@ jobs:
           pip install -r requirements.txt     
       - name: Print output
         run: echo Installing PIP has started ..
-      - uses: ./.github/actions/build
+      - name: Build
+        run: |
+          cd path/to/clone/repository
+          make build
 
   deploy-to-dev:
     runs-on: self-hosted
