@@ -42,12 +42,11 @@ jobs:
       - name: Start service
         run: |
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-          pm2 start app.py --name greetings-app-dev-- --port 7001
+          pm2 start python-greetings/app.py --name greetings-app-dev -- -p 7001
       - name: Check running processes
         run: pm2 list
       - uses: ./.github/actions/deploy
         with:
-          port: 1010
           environment: 'DEV'
 
   tests-on-dev:
@@ -93,7 +92,6 @@ jobs:
         working-directory: path/to/clone/repository
       - uses: ./.github/actions/deploy
         with:
-          port: 2020
           environment: 'STG'
           
   tests-on-staging:
@@ -139,7 +137,6 @@ jobs:
         working-directory: path/to/clone/repository
       - uses: ./.github/actions/deploy
         with:
-          port: 3030
           environment: 'PRD'
 
   tests-on-preprod:
@@ -185,7 +182,6 @@ jobs:
         working-directory: path/to/clone/repository
       - uses: ./.github/actions/deploy
         with:
-          port: 3030
           environment: 'PRD'
           
   tests-on-prod:
