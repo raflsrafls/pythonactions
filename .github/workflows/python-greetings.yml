@@ -23,7 +23,6 @@ jobs:
       - name: Print output
         run: echo Installing PIP has started ..
 
-
   deploy-to-dev:
     runs-on: self-hosted
     needs: [install-pip-deps]
