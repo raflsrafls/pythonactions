@@ -40,8 +40,11 @@ jobs:
       - name: Stop existing service
         run: pm2 delete greetings-app-dev "&" EXIT /B 0
       - name: Start service
-        run: pm2 start app.py --name greetings-app-dev -- --port 7001
-        working-directory: path/to/clone/repository
+        run: |
+          cd path/to/clone/repository
+          pm2 start app.py --name greetings-app-dev -- --port 7001
+      - name: Check running processes
+        run: pm2 list
       - uses: ./.github/actions/deploy
         with:
           port: 1010
