@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v3.5.2
         with:
           repository: mtararujs/python-greetings
-          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions\
+          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Install dependencies
         run: |
-          cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions\
+          cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
           pip install -r requirements.txt     
       - name: Print output
         run: echo Installing PIP has started ..
