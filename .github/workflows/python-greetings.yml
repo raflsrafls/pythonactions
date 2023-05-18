@@ -38,8 +38,8 @@ jobs:
           ref: main
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Stop existing service
-        run: pm2 delete greetings-app-dev ;
-             EXIT /B 0
+        run: pm2 delete greetings-app-dev
+             EXIT 0
       - name: Start service
         run: |
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
