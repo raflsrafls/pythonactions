@@ -42,7 +42,7 @@ jobs:
           pm2 start app.py --name greetings-app-dev -- -p 7001
       - name: Stop existing service
         run: |
-          pm2 delete greetings-app-<vides_nosaukums> "&" SET "errorlevel=0"
+          pm2 delete greetings-app-dev "&" SET "errorlevel=0"
       - name: Check running processes
         run: pm2 list
       - uses: ./.github/actions/deploy
