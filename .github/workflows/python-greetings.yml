@@ -39,7 +39,6 @@ jobs:
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Start service
         run: |
-          run: |
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
           pm2 start app.py --name greetings-app-dev -- -p 7001
       - name: Stop existing service
