@@ -1,0 +1,209 @@
+name: pythongreet
+
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  install-pip-deps:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3.5.2
+      - name: clone python-greetings repository
+        uses: actions/checkout@v3.5.2
+        with:
+          repository: mtararujs/python-greetings
+          path: path/to/clone/repository
+      - name: Install dependencies
+        run: |
+          cd path/to/clone/repository
+          pip install -r requirements.txt     
+      - name: Print output
+        run: echo Installing PIP has started ..
+      - uses: ./.github/actions/build
+
+  deploy-to-dev:
+    runs-on: self-hosted
+    needs: [install-pip-deps]
+    steps:
+      - name: Print output
+        run: echo Deployment to DEV has started..
+      - uses: actions/checkout@v3.5.2
+      - name: Clone python-greetings repository
+        uses: actions/checkout@v3.5.2
+        with:
+          repository: mtararujs/python-greetings
+          ref: main
+          path: path/to/clone/repository
+      - name: Stop existing service
+        run: pm2 delete greetings-app-dev & EXIT /B 0
+      - name: Start service
+        run: pm2 start app.py --name greetings-app-dev -- --port 7001
+        working-directory: path/to/clone/repository
+      - uses: ./.github/actions/deploy
+        with:
+          port: 1010
+          environment: 'DEV'
+
+  tests-on-dev:
+    runs-on: self-hosted
+    needs: [deploy-to-dev]
+    steps:
+      - name: Print output
+        run: echo Testing on DEV has started..
+      - uses: actions/checkout@v3.5.2
+      - name: Clone course-js-api-framework repository
+        uses: actions/checkout@v3.5.2
+        with:
+          repository: mtararujs/course-js-api-framework
+          ref: main
+          path: path/to/clone/repository
+      - name: Install dependencies
+        run: npm install
+        working-directory: path/to/clone/repository
+      - name: Run tests
+        run: npm run greetings greetings_dev
+        working-directory: path/to/clone/repository
+      - uses: ./.github/actions/test
+        with:
+          environment: 'DEV'
+
+  deploy-to-staging:
+    runs-on: self-hosted
+    needs: [tests-on-dev]
+    steps:
+      - name: Print output
+        run: echo Deployment to STG has started..
+      - uses: actions/checkout@v3.5.2
+      - name: Clone python-greetings repository
+        uses: actions/checkout@v3.5.2
+        with:
+          repository: mtararujs/python-greetings
+          ref: main
+          path: path/to/clone/repository
+      - name: Stop existing service
+        run: pm2 delete greetings-app-staging & EXIT /B 0
+      - name: Start service
+        run: pm2 start app.py --name greetings-app-staging -- --port 7002
+        working-directory: path/to/clone/repository
+      - uses: ./.github/actions/deploy
+        with:
+          port: 2020
+          environment: 'STG'
+          
+  tests-on-staging:
+    runs-on: self-hosted
+    needs: [deploy-to-staging]
+    steps:
+      - name: Print output
+        run: echo Testing on STG has started..
+      - uses: actions/checkout@v3.5.2
+      - name: Clone course-js-api-framework repository
+        uses: actions/checkout@v3.5.2
+        with:
+          repository: mtararujs/course-js-api-framework
+          ref: main
+          path: path/to/clone/repository
+      - name: Install dependencies
+        run: npm install
+        working-directory: path/to/clone/repository
+      - name: Run tests
+        run: npm run greetings greetings_staging
+        working-directory: path/to/clone/repository
+      - uses: ./.github/actions/test
+        with:
+          environment: 'STG'
+
+  deploy-to-preprod:
+    runs-on: self-hosted
+    needs: [tests-on-staging]
+    steps:
+      - name: Print output
+        run: echo Deployment to PRD has started..
+      - uses: actions/checkout@v3.5.2
+      - name: Clone python-greetings repository
+        uses: actions/checkout@v3.5.2
+        with:
+          repository: mtararujs/python-greetings
+          ref: main
+          path: path/to/clone/repository
+      - name: Stop existing service
+        run: pm2 delete greetings-app-preprod & EXIT /B 0
+      - name: Start service
+        run: pm2 start app.py --name greetings-app-preprod -- --port 7003
+        working-directory: path/to/clone/repository
+      - uses: ./.github/actions/deploy
+        with:
+          port: 3030
+          environment: 'PRD'
+
+  tests-on-preprod:
+    runs-on: self-hosted
+    needs: [deploy-to-preprod]
+    steps:
+      - name: Print output
+        run: echo Testing on PRD has started..
+      - uses: actions/checkout@v3.5.2
+      - name: Clone course-js-api-framework repository
+        uses: actions/checkout@v3.5.2
+        with:
+          repository: mtararujs/course-js-api-framework
+          ref: main
+          path: path/to/clone/repository
+      - name: Install dependencies
+        run: npm install
+        working-directory: path/to/clone/repository
+      - name: Run tests
+        run: npm run greetings greetings_preprod
+        working-directory: path/to/clone/repository
+      - uses: ./.github/actions/test
+        with:
+          environment: 'PRD'
+
+  deploy-to-prod:
+    runs-on: self-hosted
+    needs: [tests-on-preprod]
+    steps:
+      - name: Print output
+        run: echo Deployment to PROD has started..
+      - uses: actions/checkout@v3.5.2
+      - name: Clone python-greetings repository
+        uses: actions/checkout@v3.5.2
+        with:
+          repository: mtararujs/python-greetings
+          ref: main
+          path: path/to/clone/repository
+      - name: Stop existing service
+        run: pm2 delete greetings-app-prod & EXIT /B 0
+      - name: Start service
+        run: pm2 start app.py --name greetings-app-prod -- --port 7004
+        working-directory: path/to/clone/repository
+      - uses: ./.github/actions/deploy
+        with:
+          port: 3030
+          environment: 'PRD'
+          
+  tests-on-prod:
+    runs-on: self-hosted
+    needs: [deploy-to-prod]
+    steps:
+      - name: Print output
+        run: echo Testing on PROD has started..
+      - uses: actions/checkout@v3.5.2
+      - name: Clone course-js-api-framework repository
+        uses: actions/checkout@v3.5.2
+        with:
+          repository: mtararujs/course-js-api-framework
+          ref: main
+          path: path/to/clone/repository
+      - name: Install dependencies
+        run: npm install
+        working-directory: path/to/clone/repository
+      - name: Run tests
+        run: npm run greetings greetings_prod
+        working-directory: path/to/clone/repository
+      - uses: ./.github/actions/test
+        with:
+          environment: 'PRD'
