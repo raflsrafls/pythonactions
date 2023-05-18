@@ -38,7 +38,7 @@ jobs:
           ref: main
           path: path/to/clone/repository
       - name: Stop existing service
-        run: pm2 delete greetings-app-dev & EXIT /B 0
+        run: pm2 delete greetings-app-dev "&" EXIT /B 0
       - name: Start service
         run: pm2 start app.py --name greetings-app-dev -- --port 7001
         working-directory: path/to/clone/repository
@@ -84,7 +84,7 @@ jobs:
           ref: main
           path: path/to/clone/repository
       - name: Stop existing service
-        run: pm2 delete greetings-app-staging & EXIT /B 0
+        run: pm2 delete greetings-app-staging "&" EXIT /B 0
       - name: Start service
         run: pm2 start app.py --name greetings-app-staging -- --port 7002
         working-directory: path/to/clone/repository
@@ -130,7 +130,7 @@ jobs:
           ref: main
           path: path/to/clone/repository
       - name: Stop existing service
-        run: pm2 delete greetings-app-preprod & EXIT /B 0
+        run: pm2 delete greetings-app-preprod "&" EXIT /B 0
       - name: Start service
         run: pm2 start app.py --name greetings-app-preprod -- --port 7003
         working-directory: path/to/clone/repository
@@ -176,7 +176,7 @@ jobs:
           ref: main
           path: path/to/clone/repository
       - name: Stop existing service
-        run: pm2 delete greetings-app-prod & EXIT /B 0
+        run: pm2 delete greetings-app-prod "&" EXIT /B 0
       - name: Start service
         run: pm2 start app.py --name greetings-app-prod -- --port 7004
         working-directory: path/to/clone/repository
