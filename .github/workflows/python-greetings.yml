@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: |
           cd path/to/clone/repository
-          make build
+          python build_script.py
 
   deploy-to-dev:
     runs-on: self-hosted
