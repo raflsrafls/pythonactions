@@ -22,10 +22,7 @@ jobs:
           pip install -r requirements.txt     
       - name: Print output
         run: echo Installing PIP has started ..
-      - name: Build
-        run: |
-          cd path/to/clone/repository
-          python build_script.py
+
 
   deploy-to-dev:
     runs-on: self-hosted
