@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v3.5.2
         with:
           repository: mtararujs/python-greetings
-          path: C:\Users\Ralfs\Desktop\pythonpipeline\
+          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions\
       - name: Install dependencies
         run: |
-          cd C:\Users\Ralfs\Desktop\pythonpipeline\
+          cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions\
           pip install -r requirements.txt     
       - name: Print output
         run: echo Installing PIP has started ..
@@ -36,12 +36,12 @@ jobs:
         with:
           repository: mtararujs/python-greetings
           ref: main
-          path: C:\Users\Ralfs\Desktop\pythonpipeline\
+          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions\
       - name: Stop existing service
         run: pm2 delete greetings-app-deploy-to-dev "&" EXIT /B 0
       - name: Start service
         run: |
-          cd C:\Users\Ralfs\Desktop\pythonpipeline\
+          cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions\
           pm2 start app.py --name greetings-app-deploy-to-dev -- --port 7001
       - name: Check running processes
         run: pm2 list
