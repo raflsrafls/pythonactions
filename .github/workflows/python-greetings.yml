@@ -48,7 +48,7 @@ jobs:
     runs-on: self-hosted
     needs: [deploy-to-dev]
     steps:
-      - name: Print output
+      - name: Print
         run: echo Testing on DEV has started..
       - uses: actions/checkout@v3.5.2
       - name: Clone course-js-api-framework repository
@@ -56,22 +56,20 @@ jobs:
         with:
           repository: mtararujs/course-js-api-framework
           ref: main
-          path: path/to/clone/repository
+          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Install dependencies
         run: npm install
-        working-directory: path/to/clone/repository
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Run tests
         run: npm run greetings greetings_dev
-        working-directory: path/to/clone/repository
-      - uses: ./.github/actions/test
-        with:
-          environment: 'DEV'
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+
 
   deploy-to-staging:
     runs-on: self-hosted
     needs: [tests-on-dev]
     steps:
-      - name: Print output
+      - name: Print
         run: echo Deployment to STG has started..
       - uses: actions/checkout@v3.5.2
       - name: Clone python-greetings repository
@@ -79,15 +77,15 @@ jobs:
         with:
           repository: mtararujs/python-greetings
           ref: main
-          path: path/to/clone/repository
-      - name: Stop existing service
-        run: pm2 delete greetings-app-staging "&" EXIT /B 0
-      - name: Start service
-        run: pm2 start app.py --name greetings-app-staging -- --port 7002
-        working-directory: path/to/clone/repository
-      - uses: ./.github/actions/deploy
-        with:
-          environment: 'STG'
+          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+      - name: Start app.py
+        run: |
+          cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+          pm2 start app.py --name greetings-app-staging -- -p 7002
+      - name: Stop app.py
+        run: pm2 delete greetings-app-staging ; set "errorlevel=0"
+      - name: Procesi
+        run: pm2 list
           
   tests-on-staging:
     runs-on: self-hosted
@@ -101,22 +99,20 @@ jobs:
         with:
           repository: mtararujs/course-js-api-framework
           ref: main
-          path: path/to/clone/repository
+          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Install dependencies
         run: npm install
-        working-directory: path/to/clone/repository
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Run tests
         run: npm run greetings greetings_staging
-        working-directory: path/to/clone/repository
-      - uses: ./.github/actions/test
-        with:
-          environment: 'STG'
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+
 
   deploy-to-preprod:
     runs-on: self-hosted
     needs: [tests-on-staging]
     steps:
-      - name: Print output
+      - name: Print
         run: echo Deployment to PRD has started..
       - uses: actions/checkout@v3.5.2
       - name: Clone python-greetings repository
@@ -124,15 +120,15 @@ jobs:
         with:
           repository: mtararujs/python-greetings
           ref: main
-          path: path/to/clone/repository
-      - name: Stop existing service
-        run: pm2 delete greetings-app-preprod "&" EXIT /B 0
-      - name: Start service
-        run: pm2 start app.py --name greetings-app-preprod -- --port 7003
-        working-directory: path/to/clone/repository
-      - uses: ./.github/actions/deploy
-        with:
-          environment: 'PRD'
+          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+      - name: Start app.py
+        run: |
+          cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+          pm2 start app.py --name greetings-app-preprod -- -p 7003
+      - name: Stop app.py
+        run: pm2 delete greetings-app-preprod ; set "errorlevel=0"
+      - name: Procesi
+        run: pm2 list
 
   tests-on-preprod:
     runs-on: self-hosted
@@ -146,22 +142,20 @@ jobs:
         with:
           repository: mtararujs/course-js-api-framework
           ref: main
-          path: path/to/clone/repository
+          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Install dependencies
         run: npm install
-        working-directory: path/to/clone/repository
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Run tests
         run: npm run greetings greetings_preprod
-        working-directory: path/to/clone/repository
-      - uses: ./.github/actions/test
-        with:
-          environment: 'PRD'
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+
 
   deploy-to-prod:
     runs-on: self-hosted
     needs: [tests-on-preprod]
     steps:
-      - name: Print output
+      - name: Print
         run: echo Deployment to PROD has started..
       - uses: actions/checkout@v3.5.2
       - name: Clone python-greetings repository
@@ -169,15 +163,15 @@ jobs:
         with:
           repository: mtararujs/python-greetings
           ref: main
-          path: path/to/clone/repository
-      - name: Stop existing service
-        run: pm2 delete greetings-app-prod "&" EXIT /B 0
-      - name: Start service
-        run: pm2 start app.py --name greetings-app-prod -- --port 7004
-        working-directory: path/to/clone/repository
-      - uses: ./.github/actions/deploy
-        with:
-          environment: 'PRD'
+          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+      - name: Start app.py
+        run: |
+          cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+          pm2 start app.py --name greetings-app-prod -- -p 7004
+      - name: Stop app.py
+        run: pm2 delete greetings-app-prod ; set "errorlevel=0"
+      - name: Procesi
+        run: pm2 list
           
   tests-on-prod:
     runs-on: self-hosted
@@ -191,13 +185,11 @@ jobs:
         with:
           repository: mtararujs/course-js-api-framework
           ref: main
-          path: path/to/clone/repository
+          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Install dependencies
         run: npm install
-        working-directory: path/to/clone/repository
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Run tests
         run: npm run greetings greetings_prod
-        working-directory: path/to/clone/repository
-      - uses: ./.github/actions/test
-        with:
-          environment: 'PRD'
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+
