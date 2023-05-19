@@ -58,11 +58,10 @@ jobs:
           ref: main
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Install npm
+        run: |
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-        run: npm install
-      - name: Tests
-          cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-        run: npm run greetings greetings_dev
+          npm install
+          npm run greetings greetings_dev
 
 
   deploy-to-staging:
