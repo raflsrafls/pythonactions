@@ -37,11 +37,13 @@ jobs:
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Start app.py
         run: |
-          cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+          working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
           pm2 start app.py --name greetings-app-dev -- -p 7001
       - name: Stop app.py
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
         run: pm2 delete greetings-app-dev ; set "errorlevel=0"
       - name: Procesi
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
         run: pm2 list
 
   tests-on-dev:
@@ -57,11 +59,11 @@ jobs:
           repository: mtararujs/course-js-api-framework
           ref: main
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-      - name: Install dependencies
+      - name: Install npm
         run: npm install
         working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-      - name: Run tests
-        run: npm run greetings -- greetings_dev
+      - name: Tests
+        run: npm run greetings greetings_dev
         working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
 
 
