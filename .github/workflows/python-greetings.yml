@@ -61,7 +61,7 @@ jobs:
         run: npm install
         working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Run tests
-        run: npm run greetings greetings_dev
+        run: npm run greetings -- greetings_dev
         working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
 
 
