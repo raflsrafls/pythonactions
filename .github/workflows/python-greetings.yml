@@ -40,7 +40,7 @@ jobs:
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
           pm2 start app.py --name greetings-app-dev -- -p 7001
       - name: Stop existing service
-        run: pm2 delete greetings-app-dev & exit /b 0
+        run: pm2 delete greetings-app-dev ; exit /b 0
       - name: Check running processes
         run: pm2 list
       - uses: ./.github/actions/deploy
