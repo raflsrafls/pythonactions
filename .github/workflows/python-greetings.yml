@@ -61,7 +61,7 @@ jobs:
         run: |
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
           npm install
-          npm run greetings "tests/scenarios/greetings/*.js" --reporter mochawesome --timeout 20000 "tests/scenarios/greetings/*.js" "tests/scenarios/greetings/*/*.js"
+          npm run greetings -- "tests/scenarios/greetings/*.js" --reporter mochawesome --timeout 20000
 
 
   deploy-to-staging:
