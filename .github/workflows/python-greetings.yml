@@ -56,13 +56,13 @@ jobs:
         with:
           repository: mtararujs/course-js-api-framework
           ref: main
-          path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+          path: C:\Windows\System32\actions-runner\_work\pythonactions\
       - name: Install npm
         run: npm install
-        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\
       - name: Tests
         run: npm run greetings greetings_dev
-        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\
 
 
   deploy-to-staging:
