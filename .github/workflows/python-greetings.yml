@@ -37,14 +37,14 @@ jobs:
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Start app.py
         run: |
-          working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
           pm2 start app.py --name greetings-app-dev -- -p 7001
+          working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Stop app.py
-        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
         run: pm2 delete greetings-app-dev ; set "errorlevel=0"
-      - name: Procesi
         working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+      - name: Procesi
         run: pm2 list
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
 
   tests-on-dev:
     runs-on: self-hosted
