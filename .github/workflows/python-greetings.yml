@@ -9,7 +9,8 @@ jobs:
   install-pip-deps:
     runs-on: self-hosted
     steps:
-    
+      - name: Print
+        run: echo Installing PIP has started ..
       - uses: actions/checkout@v3.5.2
       - name: clone python-greetings repository
         uses: actions/checkout@v3.5.2
@@ -18,11 +19,10 @@ jobs:
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
       - name: Install
         run: |
-          run: echo Installing PIP has started ..
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-          pip install -r requirements.txt     
-      - name: Print
-
+          pip install -r requirements.txt   
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+                  
   deploy-to-dev:
     runs-on: self-hosted
     needs: [install-pip-deps]
@@ -36,7 +36,6 @@ jobs:
           repository: mtararujs/python-greetings
           ref: main
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-          clean: false
       - name: Procesi
         run: pm2 list
       - name: Start app.py
