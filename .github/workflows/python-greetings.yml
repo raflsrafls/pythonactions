@@ -63,7 +63,6 @@ jobs:
           npm install
           npm run greetings -- 'tests/scenarios/greetings/*.js' --reporter mochawesome --timeout 20000 greetings_dev
 
-
   deploy-to-staging:
     runs-on: self-hosted
     needs: [tests-on-dev]
