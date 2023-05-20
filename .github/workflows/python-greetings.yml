@@ -65,7 +65,7 @@ jobs:
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
           npm install
       - name: Testi
-        run: npm run greetings greetings_dev
+        run: npm run greetings greetings-dev
         working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
 
   deploy-to-staging:
