@@ -61,7 +61,9 @@ jobs:
         run: |
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
           npm install
-          npm run greetings -- 'tests/scenarios/greetings/*.js' --reporter mochawesome --timeout 20000 greetings_dev
+      - name: Testi
+         npm run greetings greetings_dev
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
 
   deploy-to-staging:
     runs-on: self-hosted
