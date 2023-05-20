@@ -191,6 +191,6 @@ jobs:
       - name: Install dependencies
         run: npm install
         working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-       #  run: npm run greetings greetings_prod
+       # run: npm run greetings greetings_prod
        # working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
 
