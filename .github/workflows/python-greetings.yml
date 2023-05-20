@@ -58,6 +58,7 @@ jobs:
           repository: mtararujs/course-js-api-framework
           ref: main
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+          clean: false
       - name: Install npm
         run: |
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
