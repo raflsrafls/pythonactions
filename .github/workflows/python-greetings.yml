@@ -59,14 +59,13 @@ jobs:
           repository: mtararujs/course-js-api-framework
           ref: main
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-          clean: false
       - name: Install npm
         run: |
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
           npm install
-     # - name: Testi
-    #   run: npm run greetings greetings_dev
-     #   working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+      - name: Testi
+      #  run: npm run greetings greetings_dev
+      #  working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
 
   deploy-to-staging:
     runs-on: self-hosted
@@ -107,8 +106,7 @@ jobs:
       - name: Install dependencies
         run: npm install
         working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-   #   - name: Run tests
-    #    run: npm run greetings greetings_staging
+     #   run: npm run greetings greetings_staging
      #   working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
 
   deploy-to-preprod:
@@ -150,7 +148,6 @@ jobs:
       - name: Install dependencies
         run: npm install
         working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-     # - name: Run tests
      #   run: npm run greetings greetings_preprod
      #   working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
 
@@ -194,7 +191,6 @@ jobs:
       - name: Install dependencies
         run: npm install
         working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-      #- name: Run tests
-      #  run: npm run greetings greetings_prod
+       #  run: npm run greetings greetings_prod
        # working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
 
