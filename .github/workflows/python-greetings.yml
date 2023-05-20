@@ -15,7 +15,7 @@ jobs:
         with:
           repository: mtararujs/python-greetings
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-      - name: Install dependencies
+      - name: Install
         run: |
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
           pip install -r requirements.txt     
