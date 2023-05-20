@@ -35,14 +35,15 @@ jobs:
           repository: mtararujs/python-greetings
           ref: main
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
-      - name: Stop app.py
-        run: pm2 delete greetings-app-dev; set "errorlevel=0"
       - name: Procesi
         run: pm2 list
       - name: Start app.py
         run: |
           cd C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
           pm2 start app.py --name greetings-app-dev -- -p 7001
+        working-directory: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+      - name: Stop app.py
+        run: pm2 delete greetings-app-dev; set "errorlevel=0"
 
   tests-on-dev:
     runs-on: self-hosted
