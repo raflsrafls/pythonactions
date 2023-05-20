@@ -35,6 +35,7 @@ jobs:
           repository: mtararujs/python-greetings
           ref: main
           path: C:\Windows\System32\actions-runner\_work\pythonactions\pythonactions
+          clean: false
       - name: Procesi
         run: pm2 list
       - name: Start app.py
